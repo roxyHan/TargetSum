@@ -57,7 +57,7 @@ class Game extends React.Component {
     });
   };
 
-  componentWillUpdate(nextProps, nextState) {
+  UNSAFE_componentWillUpdate(nextProps, nextState) {
     if (
       nextState.selectedIds !== this.state.selectedIds ||
       nextState.remainingSeconds === 0
@@ -105,11 +105,13 @@ class Game extends React.Component {
             />
           ))}
         </View>
-        <Button
-          title="Play again"
-          style={styles.container}
-          onPress={this.props.onPlayAgain}
-        />
+        <View style={styles.replay}>
+          <Button
+            title="Play again"
+            style={styles.replay}
+            onPress={this.props.onPlayAgain}
+          />
+        </View>
         <Text> {this.state.remainingSeconds} </Text>
       </View>
     );
@@ -155,6 +157,18 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 
+  replay: {
+    backgroundColor: 'blue',
+    width: 150,
+    textAlign: 'center',
+    alignSelf: 'center',
+    marginBottom: 60,
+    borderWidth: 4,
+    borderColor: 'blue',
+    borderRadius: 10,
+    fontSize: 50,
+  },
+
   STATUS_PLAYING: {
     backgroundColor: '#bbb',
   },
@@ -166,8 +180,6 @@ const styles = StyleSheet.create({
   STATUS_LOST: {
     backgroundColor: 'red',
   },
-
-  
 });
 
 export default Game;
