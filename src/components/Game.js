@@ -10,6 +10,7 @@ class Game extends React.Component {
   static propTypes = {
     randomNumberCount: PropTypes.number.isRequired,
     initialSeconds: PropTypes.number.isRequired,
+    onPlayAgain: PropTypes.func.isRequired,
   };
 
   state = {
@@ -104,7 +105,11 @@ class Game extends React.Component {
             />
           ))}
         </View>
-        <Button title="Play again" onPress={() => {}}></Button>
+        <Button
+          title="Play again"
+          style={styles.container}
+          onPress={this.props.onPlayAgain}
+        />
         <Text> {this.state.remainingSeconds} </Text>
       </View>
     );
@@ -161,6 +166,8 @@ const styles = StyleSheet.create({
   STATUS_LOST: {
     backgroundColor: 'red',
   },
+
+  
 });
 
 export default Game;
