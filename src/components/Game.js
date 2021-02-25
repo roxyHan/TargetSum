@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {View, Text, StyleSheet, Button} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 import RandomNumber from './RandomNumber';
 import shuffle from 'lodash.shuffle';
@@ -105,14 +105,14 @@ class Game extends React.Component {
             />
           ))}
         </View>
-        <View style={styles.replay}>
-          <Button
-            title="Play again"
+        {this.gameStatus !== 'PLAYING' && (
+          <TouchableOpacity
             style={styles.replay}
-            onPress={this.props.onPlayAgain}
-          />
-        </View>
-        <Text> {this.state.remainingSeconds} </Text>
+            onPress={this.props.onPlayAgain}>
+            <Text style={styles.playText}> Play Again </Text>
+          </TouchableOpacity>
+        )}
+        <Text style={styles.chrono}> Timer: {this.state.remainingSeconds}</Text>
       </View>
     );
   }
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#ddd',
     flex: 1,
-    paddingTop: 30,
+    paddingTop: 60,
     borderWidth: 2,
   },
 
@@ -130,9 +130,10 @@ const styles = StyleSheet.create({
     fontSize: 40,
     backgroundColor: '#aaa',
     marginHorizontal: 50,
+    marginVertical: 20,
     textAlign: 'center',
-    borderWidth: 5,
-    borderColor: '#530062',
+    borderWidth: 2,
+    borderColor: 'black',
     borderRadius: 15,
   },
 
@@ -141,7 +142,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
-    marginTop: 50,
+    marginTop: 0,
   },
 
   boxes: {
@@ -158,15 +159,25 @@ const styles = StyleSheet.create({
   },
 
   replay: {
-    backgroundColor: 'blue',
+    backgroundColor: 'silver',
     width: 150,
-    textAlign: 'center',
+    height: 45,
     alignSelf: 'center',
-    marginBottom: 60,
-    borderWidth: 4,
-    borderColor: 'blue',
+    marginBottom: 50,
+    borderWidth: 2,
+    borderColor: 'black',
     borderRadius: 10,
-    fontSize: 50,
+  },
+
+  playText: {
+    fontSize: 25,
+    fontWeight: '800',
+    textAlign: 'center',
+  },
+
+  chrono: {
+    fontSize: 20,
+    textAlign: 'left',
   },
 
   STATUS_PLAYING: {
