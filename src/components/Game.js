@@ -89,6 +89,9 @@ class Game extends React.Component {
     const gameStatus = this.gameStatus;
     return (
       <View style={styles.container}>
+        <Text style={styles.header}>
+          Find the right sum for the target number displayed below
+        </Text>
         <Text style={[styles.target, styles[`STATUS_${gameStatus}`]]}>
           {this.target}
         </Text>
@@ -122,8 +125,15 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#ddd',
     flex: 1,
-    paddingTop: 60,
+    paddingTop: 30,
     borderWidth: 2,
+  },
+
+  header: {
+    fontSize: 20,
+    fontWeight: '800',
+    flexWrap: 'wrap',
+    textAlign: 'center',
   },
 
   target: {
@@ -142,7 +152,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
-    marginTop: 0,
   },
 
   boxes: {
@@ -163,7 +172,7 @@ const styles = StyleSheet.create({
     width: 150,
     height: 45,
     alignSelf: 'center',
-    marginBottom: 50,
+    marginBottom: 40,
     borderWidth: 2,
     borderColor: 'black',
     borderRadius: 10,
